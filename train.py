@@ -81,7 +81,7 @@ elif args.MODE=='muti':
         import os
         os.environ["CUDA_VISIBLE_DEVICES"] = ",".join(map(str, args.GPU_LIST))
         device = torch.device(f'cuda' if torch.cuda.is_available() else 'cpu')
-        print(f"即将在{args.GPU_LIST}使用多卡训练模式\n", flush=True)
+        print(f"即将在{args.GPU_LIST}号设备使用多卡训练模式\n", flush=True)
     else:
         device = torch.device(f'cuda:0' if torch.cuda.is_available() else 'cpu')
         print(f"当前平台不满足多GPU模式，即将默认使用{device}进行训练\n", flush=True)
@@ -341,3 +341,4 @@ class Trainer(object):
 if __name__ == '__main__':
 
     main()
+

@@ -56,7 +56,7 @@ def Compute_Attention_Label(img, Matrix, threshold):
     rows, columns     = ill_cond_A.shape
     Lambda            = rows + 1
     well_cond_A       = ill_cond_A + Lambda * torch.eye(rows)               # [C, C]
-    well_cond_A_inv   = torch.linalg.inv(well_cond_A)                       # [C, C]
+    well_cond_A_inv   = torch.linalg.inv(well_cond_A).to(img.device)        # [C, C]
     outputs           = torch.matmul(well_cond_A_inv, perturbed_input.unsqueeze(-1)).squeeze(-1) # [B*H*W, C, C]
 
     # Manhattan Distance
@@ -173,3 +173,4 @@ if __name__ == "__main__":
     plt.title('Classification Map')
     plt.savefig('../figure/classify_map.tif', dpi=300, bbox_inches='tight')
     plt.show()
+

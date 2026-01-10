@@ -105,7 +105,7 @@ if __name__ == "__main__":
     result_dir    = os.path.join("./output/")
     os.makedirs(result_dir, exist_ok=True)
 
-    model_path    = "./pth_files/epoch8-loss0.175-val_loss0.178.pth"
+    model_path    = "./pth_files/epoch8-loss0.176-val_loss0.174.pth"
     img_in_path   = "./test_sample/365.tif"
 
     cfg = {
@@ -117,4 +117,5 @@ if __name__ == "__main__":
     img_name      = os.path.splitext(os.path.basename(img_in_path))[0]
     seg_out_path  = os.path.join(result_dir, f"seg_{img_name}_class.tif")
     seg_png_path  = os.path.join(result_dir, f"seg_{img_name}_png.tiff")
+
     main(cfg, model_path, img_in_path, seg_out_path, seg_png_path)

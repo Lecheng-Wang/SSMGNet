@@ -54,7 +54,7 @@ class Model:
             pr            = pr.argmax(dim=1)                    # [1, H, W]
             pr            = pr.squeeze(0).cpu().numpy()         # [H, W]
         
-        map = map.squeeze(0).squeeze(0)
+        map = map.squeeze(0).squeeze(0).cpu().numpy()           # [H, W]
         return pr,map
 
     """Predict large image(divided into patchs to predict and confuse)"""
@@ -154,4 +154,5 @@ class Model:
         
         # 转 numpy
         return cam.detach().cpu().numpy()
+
 

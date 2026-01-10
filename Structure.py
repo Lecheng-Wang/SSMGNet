@@ -1,7 +1,7 @@
 # encoding = utf-8
 
 # @Author  ：Lecheng Wang
-# @Time    : ${2025/7/15} ${17:23}
+# @Time    : 2025/7/15 17:23
 # @function: 模型预测时加载模型权重文件，预测结果生成
 
 
@@ -154,5 +154,6 @@ class Model:
         
         # 转 numpy
         return cam.detach().cpu().numpy()
+
 
 

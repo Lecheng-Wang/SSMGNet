@@ -44,7 +44,7 @@ It combines a simple cnn segmentation network (SegModel) with an attention super
 - matplotlib
 
 
-# install torch appropriate for your CUDA (example; change according to your GPU)
+## Install torch appropriate for your CUDA (example; change according to your GPU)
 pip install torch torchvision --extra-index-url https://download.pytorch.org/whl/cu121
 ```
 

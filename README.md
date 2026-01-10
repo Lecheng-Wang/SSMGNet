@@ -23,11 +23,12 @@ It combines a simple cnn segmentation network (SegModel) with an attention super
 ---
 
 ## Quick features
-- Spectral-similarity based attention supervision (computed from spectral sample matrix)
-- Training uses segmentation loss (Cross-Entropy / Focal) + attention MSE loss
-- Small-patch and large-image inference scripts (GeoTIFF I/O)
-- Export predictions to GeoTIFF and shapefile (predict_huge.py uses rasterio + geopandas)
-- Deterministic seed setup for reproducibility
+- ⚡️ Spectral-similarity based attention supervision (computed from spectral sample matrix)
+- 🔄 Training uses segmentation loss (Cross-Entropy / Focal) + attention MSE loss
+- 🚀 Small-patch and large-image inference scripts (GeoTIFF I/O)
+- 🌐 Export predictions to GeoTIFF and shapefile (predict_huge.py uses rasterio + geopandas)
+- 🏆 Deterministic seed setup for reproducibility
+- ❄️ Specialized support for glacier segmentation tasks  
 
 ---
 

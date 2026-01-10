@@ -44,6 +44,7 @@ parser.add_argument('--DATASET_PATH',        type=str,   default='./datasets/') 
 parser.add_argument('--MODE',                type=str,   default='single', choices=['single','muti','all'])
 parser.add_argument('--GPU_ID',              type=int,   default=0)
 parser.add_argument('--GPU_LIST',            type=str,   default='1,2')
+parser.add_argument('--USE_CPU',             type=bool,  default=False)
 parser.add_argument('--BANDS',               type=int,   default=10)
 parser.add_argument('--NUM_CLASS',           type=int,   default=2+1)
 parser.add_argument('--LR_STEP',             type=int,   default=1)
@@ -67,7 +68,11 @@ args = parser.parse_args()
 #        single: Training on only-one GPU
 #        muti:  Parallel training on multiple GPUs in GPU_LIST
 #        all:    Parallel training on all GPUs on this platform
-if args.MODE=='single':
+if args.USE_CPU:
+    device    = torch.device('cpu')
+    print("当前代码已指定使用cpu进行训练\n", flush=True)
+
+elif args.MODE=='single':
     device = torch.device(f'cuda:{args.GPU_ID}' if torch.cuda.is_available() else 'cpu')
     print(f"即将在{device}上使用单卡训练模式\n", flush=True)
 elif args.MODE=='muti':
@@ -123,7 +128,7 @@ def main ():
     
     # 构建语义分割网络
     model = SegModel(bands=args.BANDS, num_classes=args.NUM_CLASS)
-    if args.MODE in ['muti','all']:
+    if args.MODE in ['muti','all'] and (not args.USE_CPU):
         model = nn.DataParallel(model)
     model = model.to(device)
 
@@ -334,4 +339,5 @@ class Trainer(object):
         return val_loss/num_batch,atten_loss/num_batch,Acc,Kappa,mIoU,mIoU0,mIoU1,mIoU2,FWIoU,mPrecision,Precision0,Precision1,Precision2,mRecall,Recall0,Recall1,Recall2,mF1_score,F1_score0,F1_score1,F1_score2,mF2_score,F2_score0,F2_score1,F2_score2
 
 if __name__ == '__main__':
+
     main()

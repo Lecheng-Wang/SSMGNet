@@ -1,7 +1,7 @@
 # encoding = utf-8
 
 # @Author  ：Lecheng Wang
-# @Time    : ${2025/5/15} ${20:17}
+# @Time    : 2025/5/15 20:17
 # @Function: Compress images and labels to a datasets for model input
 
 
@@ -48,5 +48,3 @@ class UnLabeled_Model_Dataset(Dataset):
         image             = gdal.Open(os.path.join(os.path.join(self.dataset_path, "images"), name + ".tif")).ReadAsArray().astype(np.float32)
         image             = np.nan_to_num(image, nan=0.0)
         return image
-
-

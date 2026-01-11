@@ -1,8 +1,8 @@
 # encoding = utf-8
 
 # @Author  ：Lecheng Wang
-# @Time    : ${2025/7/15} ${19:02}
-# @function: 预测小的patch结果
+# @Time    : 2025/7/15 19:02
+# @function: Predict small size(256*256) MSI
 
 
 import os
@@ -119,3 +119,4 @@ if __name__ == "__main__":
     seg_png_path  = os.path.join(result_dir, f"seg_{img_name}_png.tiff")
 
     main(cfg, model_path, img_in_path, seg_out_path, seg_png_path)
+

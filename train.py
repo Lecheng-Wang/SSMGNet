@@ -2,7 +2,7 @@
 
 # @Author     ：Lecheng Wang
 # @Time       : 2026/1/10 1:05 (Revised)
-# @Function   : main control pannel
+# @Function   : main
 # @Description: train file
 
 
@@ -341,4 +341,5 @@ class Trainer(object):
 if __name__ == '__main__':
 
     main()
+
 

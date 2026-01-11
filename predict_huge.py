@@ -1,8 +1,8 @@
 # encoding = utf-8
 
 # @Author  ：Lecheng Wang
-# @Time    : ${2025/7/15} ${19:02}
-# @function: 预测大的patch结果
+# @Time    : 2025/7/15 19:02
+# @function: Predict large size(H*W) MSI
 
 
 import os
@@ -155,4 +155,5 @@ if __name__ == "__main__":
     img_name      = os.path.splitext(os.path.basename(img_in_path))[0]
     seg_out_path  = os.path.join(result_dir, f"seg_{img_name}_class.tif")
     seg_png_path  = os.path.join(result_dir, f"seg_{img_name}_png.tiff")
+
     main(cfg, model_path, img_in_path, seg_out_path, seg_png_path, shp_dir)

@@ -1,8 +1,8 @@
 # encoding = utf-8
 
 # @Author  ：Lecheng Wang
-# @Time    : ${2025/5/15} ${20:36}
-# @Function: function to initial parameters in model
+# @Time    : 2025/5/15 20:36
+# @Function: weights_init: Initial parameters in model
 
 import torch
 import torch.nn as nn
@@ -33,4 +33,5 @@ def weights_init(net, init_type='kaiming', init_gain=0.02, a=0, slope=0):
 
     print(f'initialize network with {init_type.upper()} type.')
     net.apply(init_func)
+
     return net

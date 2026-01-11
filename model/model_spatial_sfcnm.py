@@ -1,10 +1,9 @@
-
 # encoding = utf-8
 
 # @Author     ：Lecheng Wang
-# @Time       : ${Ctrl+D} ${Ctrl+M}
-# @Function   : class name, def name
-# @Description: To do ......
+# @Time       : 2026/1/10 01:12 (Revised)
+# @Function   : 
+# @Description: model structure ......
 
 import math
 import torch
@@ -109,9 +108,6 @@ class SegModel(nn.Module):
         return map
 
 
-
-
-
 # Test Model Structure and Outputsize
 if __name__ == "__main__":
     from torchinfo  import summary
@@ -121,15 +117,9 @@ if __name__ == "__main__":
     model           = SegModel(bands         = 10, num_classes  = 3,
                                width         = 16, conv_kernel  = 3,
                                dilation_rate = 1,  atten_kernel = 9).to(device)
-
     x               = torch.randn(1, 10, 256, 256).to(device)
-
-
-
     output          = model(x)
-
     flops, params   = profile(model, inputs=(x, ), verbose=False)
-
     print('GFLOPs: ', (flops/1e9)/x.shape[0], 'Params(M): ', params/1e6)
     print("Input shape:",         list(x.shape))
     print("SegOutput shape:",     list(output[0].shape))

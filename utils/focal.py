@@ -1,3 +1,9 @@
+# encoding = utf-8
+
+# @Author  ：Lecheng Wang
+# @Time    : 2025/6/11 16:45
+# @Function: FocalLoss
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -29,4 +35,5 @@ class FocalLoss(nn.Module):
         elif self.reduction == 'sum':
             return focal_loss.sum()
         else:
+
             return focal_loss

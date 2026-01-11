@@ -2,7 +2,7 @@
 
 # @Author  ：Lecheng Wang
 # @Time    : 2025/7/15 17:23
-# @function: 模型预测时加载模型权重文件，预测结果生成
+# @function: Constructing model, loading weight file, and generating prediction
 
 
 import torch
@@ -117,43 +117,19 @@ class Model:
             rgb[mask == cls_id] = color
         return Image.fromarray(rgb)
 
-
-
+    
     def grad_cam(self, image, target_class):
-        """
-        Args:
-            image: np.array [C, H, W]
-            target_class: int
-        Returns:
-            cam: [H, W], normalized 0~1
-        """
         self.model.eval()
         image = torch.tensor(image, dtype=torch.float32).unsqueeze(0).to(self.device)
-
-        # 前向
-        seg, feat4, _ = self.model(image)
-        
-        # 只保留 grad
+        seg,feat4,_ = self.model(image)
         feat4.retain_grad()
-        
-        # 选择目标类别
-        target = seg[0, target_class]
-        
-        # 反向传播
+        target      = seg[0, target_class]
         target.sum().backward()
-
-        # feat4 的梯度和 feature 都在 device 上
         gradients   = feat4.grad[0]       # [C, H, W]
         activations = feat4[0]            # [C, H, W]
-
         alpha       = gradients.mean(dim=(1, 2))
         cam         = (alpha[:, None, None] * activations).sum(dim=0)
         cam         = torch.relu(cam)
         cam        -= cam.min()
         cam        /= (cam.max() + 1e-8)
-        
-        # 转 numpy
         return cam.detach().cpu().numpy()
-
-
-

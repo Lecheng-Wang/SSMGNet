@@ -33,6 +33,7 @@ It combines a simple cnn segmentation network (SegModel) with an attention super
 ---
 
 ## Requirements and Environments
+```
 torch==2.3.0+cu121
 torchvision==0.18.0+cu121
 torchaudio==2.3.0+cu121
@@ -48,6 +49,7 @@ geopandas==1.1.2
 shapely==2.1.2
 opencv-python==4.12.0.88
 matplotlib==3.10.8
+```
 
 **Install pytorch (CUDA version)**
 ***Note***

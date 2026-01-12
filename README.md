@@ -7,11 +7,7 @@ It combines a simple cnn segmentation network (SegModel) with an attention super
 
 ---
 
-## Contents (high level)
-- train.py
-- predict_small.py
-- predict_huge.py
-- Structure.py
+## Code Contents
 - utils/
 - model/
 - figure/
@@ -19,6 +15,10 @@ It combines a simple cnn segmentation network (SegModel) with an attention super
 - pth_files/
 - test_sample/
 - output/
+- train.py
+- predict_small.py
+- predict_huge.py
+- Structure.py
 
 ---
 
@@ -28,30 +28,34 @@ It combines a simple cnn segmentation network (SegModel) with an attention super
 - 🚀 Small-patch and large-image inference scripts (GeoTIFF I/O)
 - 🌐 Export predictions to GeoTIFF and shapefile (predict_huge.py uses rasterio + geopandas)
 - 🏆 Deterministic seed setup for reproducibility
-- ❄️ Specialized support for glacier segmentation tasks  
+- ❄️ Specialized support for glacier segmentation tasks
 
 ---
 
-## Requirements / Recommended environment
-- Python 3.12+ 
-- PyTorch >= 2.30 (install a build matching your CUDA)
-- numpy
-- tqdm
-- GDAL
-- rasterio
-- geopandas (for shapefile export)
-- opencv-python
-- matplotlib
+## Requirements and Environments
+torch==2.3.0+cu121
+torchvision==0.18.0+cu121
+torchaudio==2.3.0+cu121
+torchinfo==1.8.0
+torchsummary==1.5.1
+numpy==1.26.4
+pandas==2.3.3
+tqdm==4.67.1
+timm==1.0.24
+GDAL==3.9.2
+rasterio==1.4.4
+geopandas==1.1.2
+shapely==2.1.2
+opencv-python==4.12.0.88
+matplotlib==3.10.8
 
+**Install pytorch (CUDA version)**
+***Note***
+- pip install torch==2.3.0+cu121 torchvision==0.18.0+cu121 torchaudio==2.3.0+cu121 --index-url https://download.pytorch.org/whl/cu121
 
-## Install torch appropriate for your CUDA (example; change according to your GPU)
-pip install torch torchvision --extra-index-url https://download.pytorch.org/whl/cu121
-```
-
-Note: GDAL / rasterio / geopandas are easiest to install via conda-forge on many platforms:
-```bash
-conda install -c conda-forge gdal rasterio geopandas
-```
+**Install other dependency package**
+***Note***
+- pip install -r requirements.txt
 
 ---
 
@@ -196,15 +200,67 @@ Notes:
 
 ---
 
-## Comparative models (for experiments)
+## Comparative models
 You may compare SSMGNet to common segmentation baselines (trained under comparable conditions):
-- DeepLabv3+
-- U-Net
-- SegFormer
-- SETR
-- Swin-UperNet (if used as a backbone/decoder in experiments)
+- **`FCN`**  
+  **Fully Convolutional Networks for Semantic Segmentation (Jonathan Long et al., 2015, CVPR).**  
+  Paper: [arXiv:1411.4038 (PDF)](https://arxiv.org/pdf/1411.4038).
 
-Include proper references in any publication.
+- **`U-Net`**  
+  **U-Net: Convolutional Networks for Biomedical Image Segmentation (Olaf Ronneberger et al., 2015, MICCAI).**  
+  Paper: [arXiv:1505.04597 (PDF)](https://arxiv.org/pdf/1505.04597).
+
+- **`SegNet`**  
+  **SegNet: A Deep Convolutional Encoder-Decoder Architecture for Image Segmentation (Vijay Badrinarayanan et al., 2015, TPAMI).**  
+  Paper: [arXiv:1511.00561 (PDF)](https://arxiv.org/pdf/1511.00561).
+
+- **`ENet`**  
+  **ENet: A Deep Neural Network Architecture for Real-Time Semantic Segmentation (Adam Paszke et al., 2016, arXiv).**  
+  Paper: [arXiv:1606.02147 (PDF)](https://arxiv.org/pdf/1606.02147).
+
+- **`RefineNet`**  
+  **RefineNet: Multi-Path Refinement Networks for High-Resolution Semantic Segmentation (Guosheng Lin et al., 2017, CVPR).**  
+  Paper: [arXiv:1611.06612 (PDF)](https://arxiv.org/pdf/1611.06612).
+
+- **`PSPNet`**  
+  **Pyramid Scene Parsing Network (Hengshuang Zhao et al., 2017, CVPR).**  
+  Paper: [arXiv:1612.01105 (PDF)](https://arxiv.org/pdf/1612.01105).
+
+- **`DeepLabv3`**  
+  **Rethinking Atrous Convolution for Semantic Image Segmentation (Liang-Chieh Chen et al., 2017, CVPR).**  
+  Paper: [arXiv:1706.05587 (PDF)](https://arxiv.org/pdf/1706.05587).
+
+- **`DeepLabv3+`**  
+  **Encoder-Decoder with Atrous Separable Convolution for Semantic Image Segmentation (Liang-Chieh Chen et al., 2018, ECCV).**  
+  Paper: [arXiv:1802.02611 (PDF)](https://arxiv.org/pdf/1802.02611).
+
+- **`UPerNet`**  
+  **Unified Perceptual Parsing for Scene Understanding (Tete Xiao et al., 2018, ECCV).**  
+  Paper: [arXiv:1807.10221 (PDF)](https://arxiv.org/pdf/1807.10221).
+
+- **`HRNet`**  
+  **Deep High-Resolution Representation Learning for Human Pose Estimation (Ke Sun et al., 2019, CVPR).**  
+  Paper: [arXiv:1902.09212 (PDF)](https://arxiv.org/pdf/1902.09212).
+
+- **`OCRNet`**  
+  **Object-Contextual Representations for Semantic Segmentation (Yuhui Yuan et al., 2020, ECCV).**  
+  Paper: [arXiv:1909.11065 (PDF)](https://arxiv.org/pdf/1909.11065).
+
+- **`SETR`**  
+  **Rethinking Semantic Segmentation from a Sequence-to-Sequence Perspective with Transformers (Sixiao Zheng et al., 2021, CVPR).**  
+  Paper: [arXiv:2012.15840 (PDF)](https://arxiv.org/pdf/2012.15840).
+
+- **`SegFormer`**  
+  **SegFormer: Simple and Efficient Design for Semantic Segmentation with Transformers (Enze Xie et al., 2021, NeurIPS).**  
+  Paper: [arXiv:2105.15203 (PDF)](https://arxiv.org/pdf/2105.15203).
+
+- **`Mask2Former`**  
+  **Masked-attention Mask Transformer for Universal Image Segmentation (Bowen Cheng et al., 2022, CVPR).**  
+  Paper: [arXiv:2112.01527 (PDF)](https://arxiv.org/pdf/2112.01527).
+
+- **`SegNeXt`**  
+  **SegNeXt: Rethinking Convolutional Attention Design for Semantic Segmentation (Meng-Hao Guo et al., 2022, NeurIPS).**  
+  Paper: [arXiv:2209.08575 (PDF)](https://arxiv.org/pdf/2209.08575).
 
 ---
 
@@ -233,9 +289,9 @@ Include proper references in any publication.
 
 ---
 
-## License & Contact
-- License: (set as appropriate; e.g., MIT)
+## Contact
 - Maintainer: Lecheng Wang  
 - Repository: https://github.com/Lecheng-Wang/SSMGNet
+- E-mail:     wanglecheng521@163.com
 
 ---

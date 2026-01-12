@@ -7,7 +7,7 @@ It combines a simple cnn segmentation network (SegModel) with an attention super
 
 ---
 
-## Code Contents
+## 📃 Code Contents
 - utils/
 - model/
 - figure/
@@ -22,7 +22,7 @@ It combines a simple cnn segmentation network (SegModel) with an attention super
 
 ---
 
-## Quick features
+## 🎯 Quick features
 - ⚡️ Spectral-similarity based attention supervision (computed from spectral sample matrix)
 - 🔄 Training uses segmentation loss (Cross-Entropy / Focal) + attention MSE loss
 - 🚀 Small-patch and large-image inference scripts (GeoTIFF I/O)
@@ -32,7 +32,7 @@ It combines a simple cnn segmentation network (SegModel) with an attention super
 
 ---
 
-## Requirements and Environments
+## ⚙ Requirements and Environments
 ```
 torch==2.3.0+cu121
 torchvision==0.18.0+cu121
@@ -61,7 +61,7 @@ matplotlib==3.10.8
 
 ---
 
-## Dataset layout
+## 📁 Dataset layout
 train.py expects a dataset root with annotation lists:
 ```
 DATASET_PATH/
@@ -75,7 +75,7 @@ Check `utils/dataset.py` to confirm how each line in the txt files should be for
 
 ---
 
-## Training (train.py)
+## Training  (train.py)
 
 Overview:
 - The script prepares a segmentation model `SegModel`, loads optional pretrained weights, prepares optimizer and scheduler, computes spectral misclassification thresholds from a reference spectral matrix (`ill_cond_A`), then trains using both segmentation and attention supervision losses.
@@ -139,7 +139,7 @@ Logs & checkpoints:
 
 ---
 
-## Attention supervision — utils/sf_cnm_threshold.py
+## 💡 Attention supervision  (utils/sf_cnm_threshold.py)
 
 This module supplies two functions used in training:
 
